@@ -1,3 +1,4 @@
+
 .header {
   margin-top: 0;
   padding: 24px 0 12px 0;
@@ -11,6 +12,7 @@
 	position: relative;
 	width: 100%;
   background-color: #607d8b;
+  color: white;
 }
 .card:before{
 	content: "";
@@ -24,4 +26,10 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
+  padding: 5% 0;
 }
+
+p {
+  font-size: 48px;
+  text-align: center;
+  padding: 5% 0 10% 0;
