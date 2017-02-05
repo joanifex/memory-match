@@ -1,28 +1,49 @@
 $(function() {
   var $cards = $('.card-content');
   var $cardText = $('p');
+  var revealedValues = [];
+
 
   function checkMatch() {
-    //if ($revealedCards.length > 1){
-      // check to see if values of the cards are the same
-      //match ? yesMatch() : noMatch();
+    var isMatch = revealedValues.every(function(element){
+      return element === revealedValues[0]
+    });
+    isMatch ? match() : noMatch();
   }
 
   function noMatch() {
-    alert('no');
+    console.log('no match');
+    $('.revealed').each(function(){
+      $(this).removeClass("revealed");
+      $(this).children().hide();
+      revealedValues = [];
+    });
   }
 
-  function yesMatch() {
-    alert('yes');
+  function match() {
+    $('.revealed').each(function(){
+      $(this).removeClass("revealed").addClass("matched");
+      revealedValues = [];
+    });
+    checkWin();
+  }
+
+  function checkWin() {
+    if ( $('.card').find('.matched').length === $('.card').length ){
+      alert('win');
+    }
   }
 
   $cards.children().hide();
 
   $cards.click(function(){
-    $text = $(this).children();
-    if (!$text.is(":visible")) {
-      $text.show();
+    $cardContent = $(this).children();
+    if (!$cardContent.is(":visible")) {
+      $(this).addClass("revealed");
+      $cardContent.show();
+      revealedValues.push($cardContent.text());
+      if (revealedValues.length === 2 )
+        checkMatch();
     }
-    checkMatch();
   });
 });
