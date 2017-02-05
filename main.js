@@ -12,7 +12,7 @@ $(function() {
   }
 
   function noMatch() {
-    console.log('no match');
+    $('.header').text('Not A Match').addClass('red-text').removeClass('green-text');
     $('.revealed').each(function(){
       $(this).removeClass("revealed");
       $(this).children().hide();
@@ -21,6 +21,7 @@ $(function() {
   }
 
   function match() {
+    $('.header').text('Match!').addClass('green-text').removeClass('red-text');
     $('.revealed').each(function(){
       $(this).removeClass("revealed").addClass("matched");
       revealedValues = [];
@@ -30,7 +31,7 @@ $(function() {
 
   function checkWin() {
     if ( $('.card').find('.matched').length === $('.card').length ){
-      alert('win');
+      $('.header').text('You win!').removeClass('red-text').removeClass('green-text').addClass('orange-text');;
     }
   }
 
