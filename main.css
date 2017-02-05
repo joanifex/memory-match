@@ -1,0 +1,27 @@
+.header {
+  margin-top: 0;
+  padding: 24px 0 12px 0;
+}
+
+.container {
+  max-width: 540px;
+}
+
+.card{
+	position: relative;
+	width: 100%;
+  background-color: #607d8b;
+}
+.card:before{
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+.card-content{
+	position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
