@@ -13,16 +13,21 @@ $(function() {
   }
 
   function noMatch() {
-    $('.header').text('Not A Match').addClass('red-text').removeClass('green-text');
+    $('.header').fadeOut(function(){
+      $(this).text('Not A Match').addClass('red-text').removeClass('green-text').fadeIn();
+    });
     $('.revealed').each(function(){
       $(this).removeClass("revealed");
-      $(this).children().hide();
+      $(this).children().fadeOut(1000);
       revealedValues = [];
     });
   }
 
   function match() {
-    $('.header').text('Match!').addClass('green-text').removeClass('red-text');
+
+    $('.header').fadeOut(function() {
+      $(this).text('Match!').addClass('green-text').removeClass('red-text').fadeIn();
+    });
     $('.revealed').each(function(){
       $(this).removeClass("revealed").addClass("matched");
       revealedValues = [];
@@ -32,7 +37,9 @@ $(function() {
 
   function checkWin() {
     if ( $('.card').find('.matched').length === $('.card').length ){
-      $('.header').text('You win!').removeClass('red-text').removeClass('green-text').addClass('orange-text');;
+      $('.header').fadeOut(function(){
+        $(this).text('You win!').removeClass('red-text').removeClass('green-text').addClass('orange-text').fadeIn();
+      });
     }
   }
 
