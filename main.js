@@ -1,8 +1,9 @@
 $(function() {
   var $cards = $('.card-content');
   var $cardText = $('p');
-  var revealedValues = [];
 
+  var values = ['1','1','2','2','3','3','4','4','5','5','6','6','7','7','8','8'];
+  var revealedValues = [];
 
   function checkMatch() {
     var isMatch = revealedValues.every(function(element){
@@ -35,7 +36,25 @@ $(function() {
     }
   }
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
   $cards.children().hide();
+
+  values = shuffle(values);
+
+  $('p').each(function(){
+    $(this).text(values.pop());
+  });
 
   $cards.click(function(){
     $cardContent = $(this).children();
