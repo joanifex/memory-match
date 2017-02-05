@@ -14,7 +14,7 @@ $(function() {
 
   function noMatch() {
     $('.header').fadeOut(function(){
-      $(this).text('Not A Match').addClass('red-text').removeClass('green-text').fadeIn();
+      $(this).text('Not A Match').addClass('red-text').removeClass('green-text').removeClass('orange-text').fadeIn();
     });
     $('.revealed').each(function(){
       $(this).removeClass("revealed");
@@ -24,9 +24,8 @@ $(function() {
   }
 
   function match() {
-
     $('.header').fadeOut(function() {
-      $(this).text('Match!').addClass('green-text').removeClass('red-text').fadeIn();
+      $(this).text('Match!').addClass('green-text').removeClass('red-text').removeClass('orange-text').fadeIn();
     });
     $('.revealed').each(function(){
       $(this).removeClass("revealed").addClass("matched");
@@ -39,29 +38,41 @@ $(function() {
     if ( $('.card').find('.matched').length === $('.card').length ){
       $('.header').fadeOut(function(){
         $(this).text('You win!').removeClass('red-text').removeClass('green-text').addClass('orange-text').fadeIn();
+        $('.header').delay(1000).fadeOut(function(){
+          $(this).text('New Game').fadeIn();
+        });
+        $('.header').click(function(){
+          $('.header').fadeOut(function(){
+            $(this).text('Memory Match').fadeIn();
+          });
+          newGame();
+        });
       });
     }
   }
 
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
   }
-  return array;
-}
 
-  $cards.children().hide();
-
-  values = shuffle(values);
-
-  $('p').each(function(){
-    $(this).text(values.pop());
-  });
+  function newGame() {
+    $cards.children().hide();
+    $cards.children().fadeOut(1000);
+    var randomValues = values.slice(0);
+    randomValues = shuffle(randomValues);
+    $('p').each(function(){
+      $(this).text(randomValues.pop());
+    });
+    revealedValues = [];
+  }
 
   $cards.click(function(){
     $cardContent = $(this).children();
@@ -73,4 +84,6 @@ function shuffle(array) {
         checkMatch();
     }
   });
+
+  newGame();
 });
