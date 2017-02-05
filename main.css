@@ -1,13 +1,21 @@
+body {
+  font-family: 'Gloria Hallelujah', cursive;
+}
 
+.header-container {
+  min-height: 120px;
+}
 .header {
-  margin-top: 0;
+  margin: 0;
   padding: 24px 0 12px 0;
+  font-size: 4.2rem;
 }
-
 .container {
-  max-width: 540px;
+  max-width: 600px;
 }
-
+.row {
+  margin-bottom: 0;
+}
 .card{
 	position: relative;
 	width: 100%;
@@ -19,17 +27,25 @@
 	display: block;
 	padding-top: 100%;
 }
-
 .card-content{
 	position:  absolute;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
-  padding: 5% 0;
 }
-
 p {
-  font-size: 48px;
+  font-size: 5em;
   text-align: center;
-  padding: 5% 0 10% 0;
+  width:100%;        // +1 to @RonM
+  position: absolute;
+  text-align: center;
+  padding-top:100%;
+  -webkit-transform: translateY(-50%); /* child now centers itself relative to the midline based on own contents */
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Matrix(Dx=0,Dy=0)'; /*IE8 */
+  filter: progid:DXImageTransform.Microsoft.Matrix(Dx=0,Dy=0); /*IE6, IE7*/
+  transform: translateY(-50%);
+}

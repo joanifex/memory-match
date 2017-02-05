@@ -13,9 +13,6 @@ $(function() {
   }
 
   function noMatch() {
-    $('.header').fadeOut(function(){
-      $(this).text('Not A Match').addClass('red-text').removeClass('green-text').removeClass('orange-text').fadeIn();
-    });
     $('.revealed').each(function(){
       $(this).removeClass("revealed");
       $(this).children().fadeOut(1000);
@@ -25,7 +22,7 @@ $(function() {
 
   function match() {
     $('.header').fadeOut(function() {
-      $(this).text('Match!').addClass('green-text').removeClass('red-text').removeClass('orange-text').fadeIn();
+      $(this).text('MATCH!').addClass('green-text').removeClass('orange-text').fadeIn();
     });
     $('.revealed').each(function(){
       $(this).removeClass("revealed").addClass("matched");
@@ -37,13 +34,20 @@ $(function() {
   function checkWin() {
     if ( $('.card').find('.matched').length === $('.card').length ){
       $('.header').fadeOut(function(){
-        $(this).text('You win!').removeClass('red-text').removeClass('green-text').addClass('orange-text').fadeIn();
+        $(this).text('YOU WIN!').removeClass('green-text').addClass('orange-text').fadeIn();
         $('.header').delay(1000).fadeOut(function(){
-          $(this).text('New Game').fadeIn();
+          $(this).text('NEW GAME').fadeIn();
         });
+        // $('.header').hover(
+        //   function(){
+        //     $('this').removeClass('orange-text').addClass('red-text');
+        //   }, function() {
+        //     $('this').removeClass('red-text').addClass('orange-text');
+        //   }
+        // );
         $('.header').click(function(){
           $('.header').fadeOut(function(){
-            $(this).text('Memory Match').fadeIn();
+            $(this).text('MEMORY MATCH').fadeIn();
           });
           newGame();
         });
